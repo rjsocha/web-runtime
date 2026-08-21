@@ -1,0 +1,14 @@
+services:
+  web:
+    image: wyga/web-runtime-dotnet:latest
+    ports:
+      - "8081:8080"
+    deploy:
+      replicas: 4
+      placement:
+        constraints:
+          - node.labels.OS == LINUX
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first

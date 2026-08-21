@@ -1,0 +1,11 @@
+# syntax=docker/dockerfile:1
+ARG RUNTIME=mcr.microsoft.com/dotnet/aspnet:10.0
+
+FROM wyga/web-runtime-dotnet-payload:latest AS payload
+
+FROM ${RUNTIME}
+WORKDIR /app
+COPY --from=payload /app .
+ENV ASPNETCORE_HTTP_PORTS=8080
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "dotnet.dll"]

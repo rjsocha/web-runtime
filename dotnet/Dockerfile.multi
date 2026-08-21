@@ -1,0 +1,17 @@
+# syntax=docker/dockerfile:1
+# check=skip=FromPlatformFlagConstDisallowed
+ARG TARGETOS
+ARG RUNTIME_LINUX=mcr.microsoft.com/dotnet/aspnet:10.0
+ARG RUNTIME_WINDOWS=mcr.microsoft.com/dotnet/aspnet:10.0-nanoserver-ltsc2022
+
+FROM wyga/web-runtime-dotnet-payload:latest AS payload
+
+FROM ${RUNTIME_LINUX} AS base-linux
+FROM --platform=windows/amd64 ${RUNTIME_WINDOWS} AS base-windows
+
+FROM base-${TARGETOS}
+WORKDIR /app
+COPY --from=payload /app .
+ENV ASPNETCORE_HTTP_PORTS=8080
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "dotnet.dll"]
