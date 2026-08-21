@@ -66,6 +66,21 @@ func report(r *http.Request, verbose, withEnvironment bool) string {
 		rt = append(rt, row{"ram", memoryLimit()})
 	}
 
+	if node := os.Getenv("RUNTIME_NODE"); node != "" {
+		details := []string{}
+		for _, name := range []string{"RUNTIME_NODE_ID", "RUNTIME_TASK", "RUNTIME_SLOT"} {
+			if value := os.Getenv(name); value != "" {
+				details = append(details, value)
+			}
+		}
+
+		if len(details) > 0 {
+			node += " (" + strings.Join(details, " / ") + ")"
+		}
+
+		rt = append([]row{{"node", node}}, rt...)
+	}
+
 	out.WriteString(section("runtime", rt))
 
 	if verbose {

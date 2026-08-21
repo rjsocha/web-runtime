@@ -1,0 +1,8 @@
+name: web-runtime-go
+
+services:
+  web:
+    image: wyga/web-runtime-go:latest
+    restart: unless-stopped
+    labels:
+      - "expose.vhost=go"

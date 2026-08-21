@@ -59,6 +59,16 @@ static string Report(HttpContext ctx, bool verbose, bool withEnvironment)
         runtime.Add(("ram", Mb(gc.TotalAvailableMemoryBytes)));
     }
 
+    var node = Environment.GetEnvironmentVariable("RUNTIME_NODE");
+    if (!string.IsNullOrEmpty(node))
+    {
+        var details = new[] { "RUNTIME_NODE_ID", "RUNTIME_TASK", "RUNTIME_SLOT" }
+            .Select(Environment.GetEnvironmentVariable)
+            .Where(value => !string.IsNullOrEmpty(value));
+
+        runtime.Insert(0, ("node", details.Any() ? $"{node} ({string.Join(" / ", details)})" : node));
+    }
+
     report.Append(Section("runtime", runtime));
 
     if (verbose)

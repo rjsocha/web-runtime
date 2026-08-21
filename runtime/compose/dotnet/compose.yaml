@@ -1,0 +1,8 @@
+name: web-runtime-dotnet
+
+services:
+  web:
+    image: wyga/web-runtime-dotnet:latest
+    restart: unless-stopped
+    labels:
+      - "expose.vhost=dotnet"

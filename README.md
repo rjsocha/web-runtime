@@ -18,6 +18,19 @@ curl localhost:8080/verbose
 curl localhost:8080/env
 ```
 
+## Build
+
+Each project builds with `make` and pushes to the registry. `IMAGE` names the
+target, so another registry needs no edit:
+
+```sh
+make -C go image IMAGE=registry.example.com/team/web-runtime-go
+make -C dotnet all IMAGE=registry.example.com/team/web-runtime-dotnet
+```
+
+In dotnet the payload follows `IMAGE` as `$(IMAGE)-payload:latest` and reaches
+the runtime build as a build argument; `PAYLOAD` overrides it on its own.
+
 ## Images
 
 ## Deployable
