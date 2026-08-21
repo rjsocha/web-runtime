@@ -33,7 +33,8 @@ curl localhost:8080/env
 | `wyga/web-runtime-go:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
 | `wyga/web-runtime-go:2019` | linux/amd64, linux/arm64, windows/amd64 (ltsc2019) |
 
-
+| image | description |
+|---|---|
 | `wyga/web-runtime-dotnet-payload:latest` |  published IL, not runnable |
 
 For demo purposes only.
