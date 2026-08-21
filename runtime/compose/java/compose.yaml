@@ -1,0 +1,8 @@
+name: web-runtime-java
+
+services:
+  web:
+    image: wyga/web-runtime-java:latest
+    restart: unless-stopped
+    labels:
+      - "expose.vhost=java"

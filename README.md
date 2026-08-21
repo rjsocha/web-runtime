@@ -6,6 +6,7 @@ Web runtime-info apps as multi-platform container images.
 |---|---|
 | [dotnet](dotnet/) | C# / ASP.NET Core on .NET 10 |
 | [go](go/) | Go, net/http, static binary |
+| [java](java/) | Java 25 LTS, com.sun.net.httpserver, virtual threads |
 
 ## Run
 
@@ -44,10 +45,14 @@ the runtime build as a build argument; `PAYLOAD` overrides it on its own.
 | `wyga/web-runtime-go:2025` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
 | `wyga/web-runtime-go:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
 | `wyga/web-runtime-go:2019` | linux/amd64, linux/arm64, windows/amd64 (ltsc2019) |
+| `wyga/web-runtime-java:latest` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
+| `wyga/web-runtime-java:2025` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
+| `wyga/web-runtime-java:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
 
 ## Payload
 
 | image | description |
 |---|---|
 | `wyga/web-runtime-dotnet-payload:latest` |  published IL, not runnable |
+| `wyga/web-runtime-java-payload:latest` |  app.jar, not runnable |
 

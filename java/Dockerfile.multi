@@ -1,0 +1,17 @@
+# syntax=docker/dockerfile:1
+ARG TARGETOS
+ARG RUNTIME_LINUX=eclipse-temurin:25-jre
+ARG RUNTIME_WINDOWS=eclipse-temurin:25-jre-nanoserver-ltsc2022
+ARG PAYLOAD=wyga/web-runtime-java-payload:latest
+
+FROM ${PAYLOAD} AS payload
+
+FROM ${RUNTIME_LINUX} AS base-linux
+FROM ${RUNTIME_WINDOWS} AS base-windows
+
+FROM base-${TARGETOS}
+WORKDIR /app
+COPY --from=payload /app .
+ENV PORT=8080
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -1,0 +1,8 @@
+# syntax=docker/dockerfile:1
+FROM --platform=$BUILDPLATFORM eclipse-temurin:25-jdk-alpine AS build
+WORKDIR /src
+COPY Main.java ./
+RUN javac -d classes Main.java && mkdir -p /out && jar --create --file /out/app.jar --main-class Main -C classes .
+
+FROM scratch
+COPY --from=build /out /app
