@@ -1,0 +1,12 @@
+# syntax=docker/dockerfile:1
+ARG RUNTIME=eclipse-temurin:25-jre
+ARG PAYLOAD=wyga/web-runtime-java-javalin-payload:latest
+
+FROM ${PAYLOAD} AS payload
+
+FROM ${RUNTIME}
+WORKDIR /app
+COPY --from=payload /app .
+ENV PORT=8080
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

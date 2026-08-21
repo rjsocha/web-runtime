@@ -1,0 +1,8 @@
+name: web-runtime-java-javalin
+
+services:
+  web:
+    image: wyga/web-runtime-java-javalin:latest
+    restart: unless-stopped
+    labels:
+      - "expose.vhost=java-javalin"

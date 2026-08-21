@@ -1,0 +1,16 @@
+services:
+  web:
+    image: wyga/web-runtime-java-javalin:latest
+    environment:
+      - RUNTIME_NODE={{.Node.Hostname}}
+      - RUNTIME_NODE_ID={{.Node.ID}}
+      - RUNTIME_TASK={{.Task.Name}}
+      - RUNTIME_SLOT={{.Task.Slot}}
+    ports:
+      - "8030:8080"
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first
