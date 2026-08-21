@@ -2,7 +2,7 @@ services:
   web:
     image: wyga/web-runtime-dotnet:latest
     ports:
-      - "8080:8080"
+      - "8000:8080"
     deploy:
       replicas: 4
       restart_policy:
