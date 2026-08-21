@@ -1,9 +1,6 @@
-# web-runtime
+# For demo purposes only ...
 
-Web runtime-info apps as multi-platform container images (Linux + Windows).
-
-The same app in several languages, each packaged the way that language is
-normally shipped.
+Web runtime-info apps as multi-platform container images.
 
 | project | language |
 |---|---|
@@ -23,6 +20,8 @@ curl localhost:8080/env
 
 ## Images
 
+## Deployable
+
 | image | platforms |
 |---|---|
 | `wyga/web-runtime-dotnet:latest` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
@@ -33,8 +32,9 @@ curl localhost:8080/env
 | `wyga/web-runtime-go:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
 | `wyga/web-runtime-go:2019` | linux/amd64, linux/arm64, windows/amd64 (ltsc2019) |
 
+## Payload
+
 | image | description |
 |---|---|
 | `wyga/web-runtime-dotnet-payload:latest` |  published IL, not runnable |
 
-For demo purposes only.
