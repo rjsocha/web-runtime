@@ -1,5 +1,5 @@
-PAYLOAD ?= wyga/web-runtime-dotnet-payload:latest
 IMAGE   ?= wyga/web-runtime-dotnet
+PAYLOAD ?= $(IMAGE)-payload:latest
 RUNTIME_LINUX   ?= mcr.microsoft.com/dotnet/aspnet:10.0
 RUNTIME_WINDOWS ?= mcr.microsoft.com/dotnet/aspnet:10.0-nanoserver-ltsc2022
 WINDOWS  ?= 2022:ltsc2022 2025:ltsc2025
@@ -20,10 +20,10 @@ payload: builder
 	docker buildx build --builder $(BUILDER) --platform $(APP_PLATFORMS) -f Dockerfile.payload -t $(PAYLOAD) $(OUT) app
 
 linux: builder
-	docker buildx build --builder $(BUILDER) --platform linux/amd64 -f Dockerfile.runtime --build-arg RUNTIME=$(RUNTIME_LINUX) -t $(IMAGE):linux $(OUT) .
+	docker buildx build --builder $(BUILDER) --platform linux/amd64 -f Dockerfile.runtime --build-arg PAYLOAD=$(PAYLOAD) --build-arg RUNTIME=$(RUNTIME_LINUX) -t $(IMAGE):linux $(OUT) .
 
 windows: builder
-	docker buildx build --builder $(BUILDER) --platform windows/amd64 -f Dockerfile.runtime --build-arg RUNTIME=$(RUNTIME_WINDOWS) -t $(IMAGE):windows $(OUT) .
+	docker buildx build --builder $(BUILDER) --platform windows/amd64 -f Dockerfile.runtime --build-arg PAYLOAD=$(PAYLOAD) --build-arg RUNTIME=$(RUNTIME_WINDOWS) -t $(IMAGE):windows $(OUT) .
 
 multi: builder
 	for v in $(WINDOWS); do \
@@ -31,6 +31,7 @@ multi: builder
 	  if [ "$$tag" = "$(LATEST)" ]; then latest="-t $(IMAGE):latest"; else latest=""; fi; \
 	  docker buildx build --builder $(BUILDER) --platform $(PLATFORMS) \
 	    -f Dockerfile.multi \
+	    --build-arg PAYLOAD=$(PAYLOAD) \
 	    --build-arg RUNTIME_LINUX=$(RUNTIME_LINUX) \
 	    --build-arg RUNTIME_WINDOWS=mcr.microsoft.com/dotnet/aspnet:10.0-nanoserver-$${v##*:} \
 	    -t $(IMAGE):$$tag $$latest $(OUT) . ; \

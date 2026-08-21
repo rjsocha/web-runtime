@@ -3,8 +3,9 @@
 ARG TARGETOS
 ARG RUNTIME_LINUX=mcr.microsoft.com/dotnet/aspnet:10.0
 ARG RUNTIME_WINDOWS=mcr.microsoft.com/dotnet/aspnet:10.0-nanoserver-ltsc2022
+ARG PAYLOAD=wyga/web-runtime-dotnet-payload:latest
 
-FROM wyga/web-runtime-dotnet-payload:latest AS payload
+FROM ${PAYLOAD} AS payload
 
 FROM ${RUNTIME_LINUX} AS base-linux
 FROM --platform=windows/amd64 ${RUNTIME_WINDOWS} AS base-windows

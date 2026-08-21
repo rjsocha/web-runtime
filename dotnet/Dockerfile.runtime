@@ -1,7 +1,8 @@
 # syntax=docker/dockerfile:1
 ARG RUNTIME=mcr.microsoft.com/dotnet/aspnet:10.0
+ARG PAYLOAD=wyga/web-runtime-dotnet-payload:latest
 
-FROM wyga/web-runtime-dotnet-payload:latest AS payload
+FROM ${PAYLOAD} AS payload
 
 FROM ${RUNTIME}
 WORKDIR /app
