@@ -27,11 +27,11 @@ image: builder dist/win-x64/app.exe dist/linux-arm64/app
 
 publish: dist/win-x64/app.exe dist/linux-arm64/app
 
-dist/linux-arm64/app:
+dist/linux-arm64/app: app/app.csproj app/Program.cs
 	DOCKER_HOST=ssh://$(ARMHOST) docker buildx inspect $(ARMBUILDER) >/dev/null 2>&1 || DOCKER_HOST=ssh://$(ARMHOST) docker buildx create --name $(ARMBUILDER) --driver docker-container --bootstrap >/dev/null
 	DOCKER_HOST=ssh://$(ARMHOST) docker buildx build --pull --builder $(ARMBUILDER) --platform linux/arm64 -f Dockerfile.publish --output type=local,dest=dist/linux-arm64 app
 
-dist/win-x64/app.exe:
+dist/win-x64/app.exe: app/app.csproj app/Program.cs
 	ssh $(WINHOST) powershell -NoProfile -Command "New-Item -ItemType Directory -Force -Path $(WINDIR) | Out-Null"
 	scp -q -r app/. $(WINHOST):$(WINDIR)/
 	ssh $(WINHOST) dotnet publish $(WINDIR)/app.csproj -c Release -r win-x64 -o $(WINDIR)/out
