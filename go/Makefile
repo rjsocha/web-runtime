@@ -8,7 +8,7 @@ PORT     ?= 8080
 
 OUT = --provenance=false --sbom=false --output type=image,oci-mediatypes=false,push=true
 
-.PHONY: all image builder run
+.PHONY: all image builder run clean
 
 all: image
 
@@ -26,3 +26,7 @@ builder:
 
 run:
 	docker run --rm -p $(PORT):8080 $(IMAGE):$(RUN_TAG)
+
+clean:
+	docker buildx rm $(BUILDER) 2>/dev/null || true
+	docker rmi -f $(IMAGE):$(RUN_TAG) 2>/dev/null || true

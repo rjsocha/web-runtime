@@ -1,8 +1,8 @@
-IMAGE   ?= wyga/web-runtime-cpp
+IMAGE   ?= wyga/web-runtime-rust
 WINDOWS  ?= 2022:ltsc2022 2025:ltsc2025
 LATEST   ?= 2025
 PLATFORMS ?= linux/amd64,linux/arm64,windows/amd64
-BUILDER  ?= cpp-builder
+BUILDER  ?= rust-builder
 RUN_TAG  ?= latest
 PORT     ?= 8080
 

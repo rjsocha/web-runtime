@@ -1,0 +1,17 @@
+[package]
+name = "app"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+hyper = { version = "1.11", features = ["server", "http1"] }
+hyper-util = { version = "0.1", features = ["tokio"] }
+http-body-util = "0.1"
+if-addrs = "0.15"
+tokio = { version = "1.53", features = ["rt-multi-thread", "net", "macros", "signal"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+panic = "abort"

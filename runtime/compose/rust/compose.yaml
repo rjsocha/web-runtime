@@ -1,0 +1,8 @@
+name: web-runtime-rust
+
+services:
+  web:
+    image: wyga/web-runtime-rust:latest
+    restart: unless-stopped
+    labels:
+      - "expose.vhost=rust"

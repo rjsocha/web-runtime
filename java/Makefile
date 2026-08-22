@@ -12,7 +12,7 @@ PORT     ?= 8080
 
 OUT = --provenance=false --sbom=false --output type=image,oci-mediatypes=false,push=true
 
-.PHONY: all payload linux windows multi builder run
+.PHONY: all payload linux windows multi builder run clean
 
 all: payload multi
 
@@ -42,3 +42,7 @@ builder:
 
 run:
 	docker run --rm -p $(PORT):8080 $(IMAGE):$(RUN_TAG)
+
+clean:
+	docker buildx rm $(BUILDER) 2>/dev/null || true
+	docker rmi -f $(IMAGE):$(RUN_TAG) $(PAYLOAD) 2>/dev/null || true

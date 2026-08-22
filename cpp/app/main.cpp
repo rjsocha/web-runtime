@@ -149,6 +149,40 @@ static std::string osDescription() {
 #endif
 }
 
+static std::string crt() {
+#ifdef _WIN32
+    std::string loaded = "unknown";
+    if (GetModuleHandleA("ucrtbase.dll") != nullptr) {
+        loaded = "ucrtbase.dll";
+    } else if (GetModuleHandleA("msvcrt.dll") != nullptr) {
+        loaded = "msvcrt.dll";
+    }
+
+#ifdef _UCRT
+    return loaded + ", built for ucrt";
+#else
+    return loaded + ", built for msvcrt";
+#endif
+#else
+    std::ifstream maps("/proc/self/maps");
+    std::string line;
+    while (std::getline(maps, line)) {
+        if (line.find("/libc.so") != std::string::npos) {
+            return "glibc, dynamic";
+        }
+        if (line.find("ld-musl") != std::string::npos || line.find("libc.musl") != std::string::npos) {
+            return "musl, dynamic";
+        }
+    }
+
+#ifdef __GLIBC__
+    return "glibc, static";
+#else
+    return "musl, static";
+#endif
+#endif
+}
+
 static std::string totalMemory() {
 #ifdef _WIN32
     MEMORYSTATUSEX status = {};
@@ -330,6 +364,7 @@ static std::string report(const http::request<http::string_body>& request,
             {"os", osDescription()},
             {"architecture", architecture()},
             {"processors", std::to_string(std::thread::hardware_concurrency())},
+            {"crt", crt()},
     };
 
     if (verbose) {
