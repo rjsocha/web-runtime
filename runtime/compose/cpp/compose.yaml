@@ -1,0 +1,8 @@
+name: web-runtime-cpp
+
+services:
+  web:
+    image: wyga/web-runtime-cpp:latest
+    restart: unless-stopped
+    labels:
+      - "expose.vhost=cpp"

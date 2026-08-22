@@ -8,6 +8,7 @@ Web runtime-info apps as multi-platform container images.
 | [go](go/) | Go, net/http, static binary |
 | [java](java/) | Java 25 LTS, com.sun.net.httpserver, virtual threads |
 | [java-javalin](java-javalin/) | Java 25 LTS, Javalin on Jetty, Maven |
+| [cpp](cpp/) | C++20, Boost.Beast, static binary |
 
 ## Run
 
@@ -52,6 +53,9 @@ the runtime build as a build argument; `PAYLOAD` overrides it on its own.
 | `wyga/web-runtime-java-javalin:latest` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
 | `wyga/web-runtime-java-javalin:2025` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
 | `wyga/web-runtime-java-javalin:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
+| `wyga/web-runtime-cpp:latest` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
+| `wyga/web-runtime-cpp:2025` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
+| `wyga/web-runtime-cpp:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
 
 ## Payload
 
