@@ -1,0 +1,11 @@
+# build output
+bin/
+obj/
+
+# publish output
+release/
+
+# user-specific project files
+*.user
+*.suo
+.vs/

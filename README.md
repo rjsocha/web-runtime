@@ -10,6 +10,7 @@ Web runtime-info apps as multi-platform container images.
 | [java-javalin](java-javalin/) | Java 25 LTS, Javalin on Jetty, Maven |
 | [cpp](cpp/) | C++20, Boost.Beast, static binary |
 | [rust](rust/) | Rust, hyper on tokio, static binary |
+| [dotnet-aot](dotnet-aot/) | C# / ASP.NET Core published with NativeAOT |
 
 ## Run
 
@@ -57,9 +58,15 @@ the runtime build as a build argument; `PAYLOAD` overrides it on its own.
 | `wyga/web-runtime-cpp:latest` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
 | `wyga/web-runtime-cpp:2025` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
 | `wyga/web-runtime-cpp:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
+| `wyga/web-runtime-cpp:2019` | linux/amd64, linux/arm64, windows/amd64 (ltsc2019) |
 | `wyga/web-runtime-rust:latest` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
 | `wyga/web-runtime-rust:2025` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
 | `wyga/web-runtime-rust:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
+| `wyga/web-runtime-rust:2019` | linux/amd64, linux/arm64, windows/amd64 (ltsc2019) |
+| `wyga/web-runtime-dotnet-aot:latest` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
+| `wyga/web-runtime-dotnet-aot:2025` | linux/amd64, linux/arm64, windows/amd64 (ltsc2025) |
+| `wyga/web-runtime-dotnet-aot:2022` | linux/amd64, linux/arm64, windows/amd64 (ltsc2022) |
+| `wyga/web-runtime-dotnet-aot:2019` | linux/amd64, linux/arm64, windows/amd64 (ltsc2019) |
 
 ## Payload
 

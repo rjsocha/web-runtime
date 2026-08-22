@@ -1,0 +1,8 @@
+name: web-runtime-dotnet-aot
+
+services:
+  web:
+    image: wyga/web-runtime-dotnet-aot:latest
+    restart: unless-stopped
+    labels:
+      - "expose.vhost=dotnet-aot"

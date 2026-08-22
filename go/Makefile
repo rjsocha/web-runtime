@@ -2,7 +2,7 @@ IMAGE    ?= wyga/web-runtime-go
 WINDOWS  ?= 2019:ltsc2019 2022:ltsc2022 2025:ltsc2025
 LATEST   ?= 2025
 PLATFORMS ?= linux/amd64,linux/arm64,windows/amd64
-BUILDER  ?= go-builder
+BUILDER  ?= web-runtime-builder
 RUN_TAG  ?= latest
 PORT     ?= 8080
 
@@ -16,7 +16,7 @@ image: builder
 	for v in $(WINDOWS); do \
 	  tag=$${v%%:*}; \
 	  if [ "$$tag" = "$(LATEST)" ]; then latest="-t $(IMAGE):latest"; else latest=""; fi; \
-	  docker buildx build --builder $(BUILDER) --platform $(PLATFORMS) -f Dockerfile \
+	  docker buildx build --pull --builder $(BUILDER) --platform $(PLATFORMS) -f Dockerfile \
 	    --build-arg BASE_WINDOWS=mcr.microsoft.com/windows/nanoserver:$${v##*:} \
 	    -t $(IMAGE):$$tag $$latest $(OUT) app ; \
 	done

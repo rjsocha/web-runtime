@@ -9,7 +9,7 @@ using System.Text;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateSlimBuilder(args);
 var app = builder.Build();
 
 app.Map("/{**rest}", (HttpContext ctx) =>
